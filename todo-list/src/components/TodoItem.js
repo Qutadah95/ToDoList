@@ -9,6 +9,7 @@ export default function TodoItem(props) {
 {props.todo.text}
 <div className='iconsContainer'>
 <AiOutlineCloseCircle onClick={()=>props.removeTodo(props.todo.id)}/>
+
 </div>
     </div>
   )
