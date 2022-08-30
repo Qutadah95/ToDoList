@@ -7,6 +7,7 @@ export default function TodoForm(props) {
   const handleSubmit = (e) => {
     e.preventDefault()
     props.addTodo(input)
+    console.log("todo form",input);
     setInput("")
   }
 
