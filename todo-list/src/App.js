@@ -10,14 +10,12 @@ import ListTodo from './components/ListTodo';
 function App() {
   const [todos, setTodos] = useState([]);
   const addTodo = (text) => {
-    console.log(text);
     let id = 1;
     if (todos.length > 0) {
       id = todos[0].id + 1
     }
     let todo = { id: id, text: text, completed: false }
     let newTodo=[todo, ...todos]
-    console.log(newTodo);
     setTodos(newTodo)
     
   }
@@ -29,27 +27,25 @@ function App() {
     return(
     <TodoItem todo={todo} key={todo.id} />
     )})
-    console.log('value',todos)
   return (
     <>
     <NavBar/>
     <Routes>
-    <Route path='/AddTodo' element={<AddTodo />} />
-    <Route path='/ListTodo' element={<ListTodo />} />
-
+    <Route path='/AddTodo' element={<AddTodo addTodo={addTodo}/>} />
     </Routes>
-    <div className="todo-app">
-      <h1>to do list</h1>
-{}
-      <TodoForm addTodo={addTodo} />
-<ListTodo todos={todos}/>
-      {todos.map((todo)=>{
+    <Routes>
+    <Route path='/ListTodo' element=  {todos.map((todo)=>{
+        return(
+        <ListTodo todo={todo} key={todo.id} />
+        )})} />
+ <Route path='/EditTodo' element=  {todos.map((todo)=>{
         return(
         <TodoItem todo={todo} key={todo.id} removeTodo={removeTodo}/>
-        )})} 
-              {/* <ListTodo value={value}/> */}
+        )})} />
 
-    </div>
+   </Routes>
+    
+   
     </>
   );
 }

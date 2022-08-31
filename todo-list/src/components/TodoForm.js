@@ -8,6 +8,8 @@ export default function TodoForm(props) {
     e.preventDefault()
     props.addTodo(input)
     console.log("todo form",input);
+    localStorage.setItem('input', input);
+
     setInput("")
   }
 

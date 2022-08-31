@@ -5,6 +5,8 @@ export const NavBar = () => {
     <nav>
 <Link to='/AddTodo'>AddTodo</Link>
 <Link to='/ListTodo'>ListTodo</Link>
+<Link to='/EditTodo'>EditTodo</Link>
+
 
 
 

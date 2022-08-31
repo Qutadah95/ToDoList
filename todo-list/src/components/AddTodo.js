@@ -1,13 +1,11 @@
 import React from 'react'
 import TodoForm from './TodoForm'
-
 export default function AddTodo(props) {
   return (
-    <div>
+    <div >
 
 
-      add to do page
-        {/* <TodoForm addTodo={props.addTodo} /> */}
+        <TodoForm addTodo={props.addTodo} />
     </div>
   )
 }
