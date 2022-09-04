@@ -16,7 +16,7 @@ export default function TodoApp() {
     </Routes>
     <Routes>
     <Route path='/ListTodo' element= {<TodoList />} />
- <Route path='/EditTodo' element=  {<VisibilityFilters />} />
+ <Route path='/EditTodo' element=  {<><VisibilityFilters /><TodoList /></>} />
 
    </Routes>
     
