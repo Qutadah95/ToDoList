@@ -4,13 +4,15 @@ import TodoList from "./components/TodoList";
 import VisibilityFilters from "./components/VisibilityFilters";
 import "./styles.css";
 import NavBar from './components/NavBar'
-import { Route, Routes } from "react-router-dom";
-import LoginButton from "./components/LoginButton";
-import LogoutButton from './components/LogoutButton'
+import { useNavigate, Route, Routes } from "react-router-dom";
+// import LoginButton from "./components/LoginButton";
+// import LogoutButton from './components/LogoutButton'
 import { useAuth0 } from '@auth0/auth0-react';
+import Home from "./components/Home";
+import Login from "./components/Login";
 
-
-
+const navigate=useNavigate();
+const dataUser=JSON.parse(window.localStorage.getItem('user-info'));
 export default function TodoApp() {
   const { isLoading } = useAuth0();
 
@@ -20,15 +22,20 @@ export default function TodoApp() {
     <div className="todo-app">
       {/* <LoginButton/>
       <LogoutButton/> */}
+
     <NavBar/>
+    <Routes>
+    <Route path='/' element={<Home />} />
     
-    <Routes>
+    
     <Route path='/AddTodo' element={<AddTodo />} />
-    </Routes>
-    <Routes>
+    
+    
     <Route path='/ListTodo' element= {<TodoList />} />
  <Route path='/EditTodo' element=  {<><VisibilityFilters /><TodoList /></>} />
-
+ 
+    <Route path='/login' element={<Login />} />
+ {/* {dataUser?<Navigate path="/"/>:<></>} */}
    </Routes>
     
    
