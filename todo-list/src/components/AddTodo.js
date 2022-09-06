@@ -1,9 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addTodo } from "../redux/actions";
-// import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 
+const [cookies, setCookie] = useCookies(["user"]);
+function handleCookie() {
+  setCookie("todos", "gowtham", {
+    path: "/"
+  });
+}
 class AddTodo extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = { input: "" };
@@ -22,12 +29,6 @@ class AddTodo extends React.Component {
   };
 
   render() {
-    // const [cookies, setCookie] = useCookies([]);
-
-  //   const handle = () => {
-  //     setCookie('todos', this.state.input, { path: '/' });
-  //     console.log(cookies.get('todos'));
-  //  };
 
     return (
       <div className="todo-form">
@@ -39,6 +40,8 @@ class AddTodo extends React.Component {
         <button className="todo-button" onClick={this.handleAddTodo }>
           Add Todo
         </button>
+        <button onClick={handleCookie}>Set Cookie</button>
+
       </div>
     );
   }
