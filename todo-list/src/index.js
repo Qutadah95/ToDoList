@@ -2,6 +2,7 @@ import React from "react";
 // import ReactDOM from "react-dom";
 import {Auth0Provider} from '@auth0/auth0-react'
 import { createRoot } from 'react-dom/client'
+import { CookiesProvider } from "react-cookie";
 
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -14,9 +15,11 @@ createRoot(document.getElementById('root')).render( <Provider store={store}>
      domain="dev-krg8-2z1.us.auth0.com"
      clientId="5v1384uU7uQaUCBJyqiAlwpuMNxuktxw"
     redirectUri={window.location.origin}>
+      <CookiesProvider>
   <BrowserRouter>
   <TodoApp />
   </BrowserRouter>
+  </CookiesProvider>
 </Auth0Provider></Provider>)
 
 // const rootElement = document.getElementById("root");

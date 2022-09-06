@@ -1,20 +1,25 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import LoginButton from './LoginButton'
-import LogoutButton from './LogoutButton'
-import {useAuth0} from '@auth0/auth0-react'
-import Home from './Home'
+
+import Login from './Login'
+
+const dataUser=JSON.parse(window.localStorage.getItem('user-info'));
+console.log(dataUser);
 export const NavBar = () => {
- const isAuthenticated=useAuth0();
-  console.log(isAuthenticated.isAuthenticated,'Auth0');
+  const handelLogOut=  ()=>{
+    // let navigate = useNavigate();
+    // navigate("/", { replace: true });
+ 
+    // navigate('/');
+    
+    window.localStorage.clear();
+    window.location.reload();
+  }
+//  const isAuthenticated=useAuth0();
+//   console.log(isAuthenticated.isAuthenticated,'Auth0');
   return (
     <nav>
-      {isAuthenticated.isAuthenticated?(<><Link to='/AddTodo'>AddTodo</Link><Link to='/ListTodo'>ListTodo</Link><Link to='/EditTodo'>EditTodo</Link></>):<><Home/></>}
-{/* <Link to='/AddTodo'>AddTodo</Link>
-<Link to='/ListTodo'>ListTodo</Link>
-<Link to='/EditTodo'>EditTodo</Link> */}
-<LoginButton/>
-<LogoutButton/>
+   {dataUser?(<><Link to='/AddTodo'>AddTodo</Link><Link to='/ListTodo'>ListTodo</Link><Link to='/EditTodo'>EditTodo</Link><button onClick={handelLogOut}>log out</button></>):<div className='todo-home'><Login/></div>}
 
 
 
