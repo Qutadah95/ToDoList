@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom';
 
 function Login() {
   const [userName,setUserName]=useState("");
   const [password,setPassword]=useState("");
 
   const handelLogin=async (e)=>{
-// e.preventDefault();
 console.warn(userName,password);
 let item={userName,password};
 let ruselt= await fetch('http://localhost:8080/api/users',
@@ -21,7 +19,6 @@ ruselt= await ruselt.json();
 console.warn('result',ruselt);
 localStorage.setItem("user-info",JSON.stringify(ruselt));
 
-// useNavigate('/')
 
 
   };
