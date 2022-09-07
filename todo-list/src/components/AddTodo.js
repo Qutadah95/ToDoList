@@ -1,14 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addTodo } from "../redux/actions";
-import { useCookies } from "react-cookie";
 
-const [cookies, setCookie] = useCookies(["user"]);
-function handleCookie() {
-  setCookie("todos", "gowtham", {
-    path: "/"
-  });
-}
 class AddTodo extends React.Component {
   
   constructor(props) {
@@ -22,7 +15,7 @@ class AddTodo extends React.Component {
 
   handleAddTodo = () => {
     this.props.addTodo(this.state.input);
-   
+   this.props.handleCookie()
 
 
     this.setState({ input: "" });
@@ -40,7 +33,6 @@ class AddTodo extends React.Component {
         <button className="todo-button" onClick={this.handleAddTodo }>
           Add Todo
         </button>
-        <button onClick={handleCookie}>Set Cookie</button>
 
       </div>
     );
