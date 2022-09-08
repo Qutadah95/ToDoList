@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 
 function Login() {
-  const [userName,setUserName]=useState("");
+  // const [userName,setUserName]=useState("");
   const [password,setPassword]=useState("");
+  const [user, setUser] = useState(null);
+  const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const handelLogin=async (e)=>{
-console.warn(userName,password);
-let item={userName,password};
-let ruselt= await fetch('http://localhost:8080/api/users',
+console.warn(username,password);
+let item={username,password};
+let ruselt= await fetch('http://localhost:8080/api/login',
 {
   method:'POST',
   headers:{
@@ -23,16 +28,16 @@ localStorage.setItem("user-info",JSON.stringify(ruselt));
 
   };
 
-  const  handelLoginx=(e)=>{
-    e.preventDefault();
-    console.log('test');
-  }
+  // const  handelLoginx=(e)=>{
+  //   e.preventDefault();
+  //   console.log('test');
+  // }
   return (
     <div>
         <form>
             <label>user name</label>
             <br/><br/>
-            <input type='text' onChange={(e)=>setUserName(e.target.value)} placeholder='user name'></input>
+            <input type='text' onChange={(e)=>setUsername(e.target.value)} placeholder='user name'></input>
             <br/><br/>
             <label>password</label>
             <br/><br/>
@@ -41,7 +46,7 @@ localStorage.setItem("user-info",JSON.stringify(ruselt));
         
         
             <button onClick={handelLogin}>log in</button>
-            <button onClick={handelLoginx}>test</button>
+            {/* <button onClick={handelLoginx}>test</button> */}
         </form>
 
     </div>

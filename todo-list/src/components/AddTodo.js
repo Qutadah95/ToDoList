@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { addTodo } from "../redux/actions";
 
 class AddTodo extends React.Component {
-  
   constructor(props) {
     super(props);
     this.state = { input: "" };
@@ -15,7 +14,7 @@ class AddTodo extends React.Component {
 
   handleAddTodo = () => {
     this.props.addTodo(this.state.input);
-   this.props.handleCookie()
+   
 
 
     this.setState({ input: "" });
@@ -33,7 +32,6 @@ class AddTodo extends React.Component {
         <button className="todo-button" onClick={this.handleAddTodo }>
           Add Todo
         </button>
-
       </div>
     );
   }
