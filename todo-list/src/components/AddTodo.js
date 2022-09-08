@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addTodo } from "../redux/actions";
-
+import axios from "axios";
 class AddTodo extends React.Component {
   constructor(props) {
     super(props);
@@ -15,9 +15,14 @@ class AddTodo extends React.Component {
   handleAddTodo = () => {
     this.props.addTodo(this.state.input);
    
-
+const newTodo={
+  todo:this.state.input,
+  isComplet:false
+}
+console.log("this.state.input",newTodo);
 
     this.setState({ input: "" });
+    axios.post("http://localhost:8080/create",newTodo)
   };
 
   render() {

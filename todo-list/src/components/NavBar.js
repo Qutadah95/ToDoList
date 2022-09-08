@@ -15,7 +15,7 @@ export const NavBar = () => {
 
   return (
     <nav>
-   {dataUser?(<><Link to='/AddTodo'>AddTodo</Link><Link to='/ListTodo'>ListTodo</Link><Link to='/EditTodo'>EditTodo</Link><button onClick={handelLogOut}>log out</button></>):<div className='todo-home'><Login/></div>}
+   {dataUser?(<><Link to='/render'>render from DB</Link><Link to='/AddTodo'>AddTodo</Link><Link to='/ListTodo'>ListTodo</Link><Link to='/EditTodo'>EditTodo</Link><button onClick={handelLogOut}>log out</button></>):<div className='todo-home'><Login/></div>}
 
 
 

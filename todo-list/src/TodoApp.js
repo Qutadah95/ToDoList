@@ -7,6 +7,7 @@ import NavBar from './components/NavBar'
 import { Route, Routes } from "react-router-dom";
 
 import { useAuth0 } from '@auth0/auth0-react';
+import TodoRender from "./components/TodoRender";
 
 
 
@@ -30,9 +31,9 @@ export default function TodoApp() {
     <Routes>
     <Route path='/ListTodo' element= {<TodoList  />} />
  <Route path='/EditTodo' element=  {<><VisibilityFilters  /><TodoList /></>} />
-
+    <Route path='/render' element={<TodoRender />} />
    </Routes>
-
+{/* <TodoRender/> */}
     </div>
 
   );
