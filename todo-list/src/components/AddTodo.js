@@ -2,10 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { addTodo } from "../redux/actions";
 import axios from "axios";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 class AddTodo extends React.Component {
   constructor(props) {
     super(props);
     this.state = { input: "" };
+    
   }
 
   updateInput = input => {
@@ -28,16 +31,18 @@ console.log("this.state.input",newTodo);
   render() {
 
     return (
-      <div className="todo-form">
-        <input
-          onChange={e => this.updateInput(e.target.value)}
-          value={this.state.input}
-          className='todo-input'
-        />
-        <button className="todo-button" onClick={this.handleAddTodo }>
-          Add Todo
-        </button>
-      </div>
+      <Form>
+      <Form.Group onChange={e => this.updateInput(e.target.value)} className="mb-3" value={this.state.input}>
+        <Form.Label>Add Todo</Form.Label>
+        <Form.Control type="text" placeholder="Add to do" />
+      
+      </Form.Group>
+
+      
+      <Button style={{ width:'100px' }} onClick={this.handleAddTodo } variant="success">Add Todo</Button>{' '}
+      
+    </Form>
+     
     );
   }
 }
