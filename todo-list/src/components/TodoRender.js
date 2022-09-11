@@ -1,6 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import Todo from './Todo';
+import React, {  useState } from 'react'
 
  function TodoRender() {
   const [todo,setTodo]=useState('')
@@ -23,6 +22,17 @@ import Todo from './Todo';
           alert('Error retrieving data!!!');
         });
         console.log("ddddd",todo);
+
+        const deletePost = (id) => {
+          console.log(id);
+      
+          axios
+            .delete(`/delete/${id}`)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
+      
+          window.location.reload();
+        };
     
 
     // ruselt=  ruselt.json();
@@ -36,7 +46,12 @@ import Todo from './Todo';
 
 {todo && todo.length
    ? todo.map((todoo, index) => { 
-     return<li>{todoo.todo}</li> ; 
+     return<><li>{todoo.todo}</li> <button
+     onClick={() => deletePost(todoo._id)}
+    
+   >
+     DELETE
+   </button></> ; 
    }) 
     : "No todos, yay!"}
   </ul> 

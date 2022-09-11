@@ -1,8 +1,7 @@
-import React ,{useEffect,useState} from "react";
+import React  from "react";
 import { connect } from "react-redux";
 import Todo from "./Todo";
 import { getTodosByVisibilityFilter } from "../redux/selectors";
-import axios from "axios";
 // const [todo,setTodo]=useState('')
 // axios.get('http://localhost:8080/list')
 // .then((response) => {
