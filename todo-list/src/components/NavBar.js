@@ -1,10 +1,12 @@
 import React from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Login from './Login'
-
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
 const dataUser=JSON.parse(window.localStorage.getItem('user-info'));
-console.log(dataUser);
 export const NavBar = () => {
   const navigate=useNavigate()
   const handelLogOut=  ()=>{
@@ -15,14 +17,24 @@ export const NavBar = () => {
   }
 
   return (
-    <nav>
-   {dataUser?(<><Link to='/AddTodo'>AddTodo</Link><Link to='/ListTodo'>ListTodo</Link><Link to='/EditTodo'>EditTodo</Link><Link to='/render'>render from DB</Link><button onClick={handelLogOut}>log out</button></>):<div onClick={()=>{    navigate('/')
-}} className='todo-home'><Login/></div>}
+    <>
 
-
-
-
-    </nav>
+    {dataUser?
+      <Navbar bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand href="/">Home</Navbar.Brand>
+        <Nav className="me-auto">
+          <Nav.Link href="/AddTodo">AddTodo</Nav.Link>
+          {/* <Nav.Link href="/ListTodo">ListTodo</Nav.Link> */}
+          {/* <Nav.Link href="/EditTodo">EditTodo</Nav.Link> */}
+          <Nav.Link href="/render">render</Nav.Link>
+        </Nav>
+      </Container>
+      <Button onClick={handelLogOut} variant="danger">log out</Button>
+    </Navbar>
+    :<div onClick={()=>{    navigate('/Login')
+  }}></div>}
+    </>
   )
 }
 export default NavBar;

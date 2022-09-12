@@ -2,22 +2,12 @@ import React  from "react";
 import { connect } from "react-redux";
 import Todo from "./Todo";
 import { getTodosByVisibilityFilter } from "../redux/selectors";
-// const [todo,setTodo]=useState('')
-// axios.get('http://localhost:8080/list')
-// .then((response) => {
-//   const data = response.data;
-//   setTodo(data)
-//   console.log('Data has been received!!');
-// })
-// .catch(() => {
-//   alert('Error retrieving data!!!');
-// });
-// console.log("ddddd",todo);
+
+
 
 const TodoList = ({ todos }) => (
-  
   <ul className="todo-row">
-
+{console.log(todos)}
 {todos && todos.length
    ? todos.map((todo, index) => { 
      return <Todo key={`todo-${todo.id}`} todo={todo} />; 
@@ -31,7 +21,7 @@ const TodoList = ({ todos }) => (
 const mapStateToProps = state => {
   const { visibilityFilter } = state;
   const todos = getTodosByVisibilityFilter(state, visibilityFilter);
-
+console.log(state);
   return { todos };
 }
   export default connect(mapStateToProps)(TodoList);

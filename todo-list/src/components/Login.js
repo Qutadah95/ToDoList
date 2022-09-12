@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 function Login() {
   const [password,setPassword]=useState("");
   const [username, setUsername] = useState("");
@@ -26,22 +27,26 @@ localStorage.setItem("user-info",JSON.stringify(ruselt));
 
 
   return (
-    <div>
-        <form>
-            <label>user name</label>
-            <br/><br/>
-            <input type='text' onChange={(e)=>setUsername(e.target.value)} placeholder='user name'></input>
-            <br/><br/>
-            <label>password</label>
-            <br/><br/>
-            <input type='password' onChange={(e)=>setPassword(e.target.value)} placeholder='password'></input>
-            <br/><br/>
-        
-        
-            <button onClick={handelLogin}>log in</button>
-        </form>
+    
+      <Form>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>user name</Form.Label>
+        <Form.Control  onChange={(e)=>setUsername(e.target.value)} type="text" placeholder="Enter User Name" />
+       
+      </Form.Group>
 
-    </div>
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="Password" />
+      </Form.Group>
+     
+      <Button  onClick={handelLogin} variant="primary" type="submit">
+      log in
+      </Button>
+    </Form>
+
+
+   
   )
 }
 
