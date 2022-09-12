@@ -2,7 +2,7 @@ import React  from 'react'
 import Login from './Login'
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
-import { Cookies, useCookies } from 'react-cookie';
+import { Cookies } from 'react-cookie';
 
 // const [cookies, setCookie] = useCookies();
 // const newCookies=new cookies()

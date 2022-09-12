@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [password,setPassword]=useState("");
@@ -11,9 +10,8 @@ function Login() {
 
 
   const handelLogin=async ()=>{
-    console.log('test');
+    console.log(cookies);
 console.warn(username,password);
-// const navigate=useNavigate()
 
 let item={username,password};
 let ruselt= await fetch('http://localhost:8080/api/login',
@@ -26,10 +24,8 @@ let ruselt= await fetch('http://localhost:8080/api/login',
 });
 ruselt= await ruselt.json();
 console.warn('result',ruselt);
-// localStorage.setItem("user-info",JSON.stringify(ruselt));
 setCookie('user-info',ruselt);
 
-// navigate('/')
 
 
 
