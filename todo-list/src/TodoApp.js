@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react';
 import TodoRender from "./components/TodoRender";
 import Home from "./components/Home";
+import Register from "./components/Register ";
 
 
 
@@ -30,7 +31,9 @@ export default function TodoApp() {
     <Route path='/AddTodo' element={<AddTodo />} />
     </Routes>
     <Routes>
-
+    <Route path='/register' element={<Register />} />
+    </Routes>
+    <Routes>
     <Route path='/render' element={<TodoRender />} />
    </Routes>
     </div>

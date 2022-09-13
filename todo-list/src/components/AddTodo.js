@@ -4,6 +4,9 @@ import { addTodo } from "../redux/actions";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+
+const userNameS= localStorage.getItem("userName")
+
 class AddTodo extends React.Component {
   constructor(props) {
     super(props);
@@ -22,10 +25,9 @@ const newTodo={
   todo:this.state.input,
   isComplet:false
 }
-console.log("this.state.input",newTodo);
 
     this.setState({ input: "" });
-    axios.post("http://localhost:8080/addTodo",newTodo)
+    axios.post(`http://localhost:8080/addTodo/?userNameS=${userNameS}`,newTodo)
   };
 
   render() {

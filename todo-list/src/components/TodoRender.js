@@ -1,28 +1,46 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
+
+
 function TodoRender() {
   const [todo, setTodo] = useState('')
   const [updatedTodo, setUpdatedTodo] = useState([{}])
   const [show, setShow] = useState(false);
+  const [userData, setUserData] = useState();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-
-
-  axios.get('http://localhost:8080/list')
+  const userNameS= localStorage.getItem("userName")
+  useEffect(() => {
+    axios.get(`http://localhost:8080/user`)
     .then((response) => {
       const data = response.data;
-      setTodo(data)
+      // const filterdData=dat
+      let obj = data.find(o => o.username === `${userNameS}`);
+      setUserData(obj._id)
     })
     .catch(() => {
       alert('Error retrieving data!!!');
     });
-
+    //   console.log("data",userData);
+    
+    // console.log("userData",userNameData);
+      axios.get(`http://localhost:8080/list/?userID=${userData}`)
+        .then((response) => {
+          const data = response.data;
+          // const filterdData=dat
+          setTodo(data)
+          // console.log("data",data);
+        })
+        .catch(() => {
+          alert('Error retrieving data!!!');
+        });  });
+ 
+// console.log(todo);
   const deleteTodo = (id) => {
     console.log(id);
 
