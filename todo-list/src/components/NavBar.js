@@ -6,17 +6,28 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
-const dataUser=JSON.parse(window.localStorage.getItem('user-info'));
+import { Cookies } from 'react-cookie';
+const cookies = new Cookies();
+
+// cookies.getAll()
+// const dataUser=JSON.parse(window.localStorage.getItem('user-info'));
+const dataUser=cookies.get('user-info');
+
+console.log(cookies.get('user-info'),"TodoApp");
+console.log(dataUser)
 export const NavBar = () => {
   const navigate=useNavigate()
   const handelLogOut=  ()=>{
 
     navigate('/')
-    window.localStorage.clear();
+    cookies.remove("user-info");
+
+    // window.localStorage.clear();
     window.location.reload();
   }
 
   return (
+    
     <>
 
     {dataUser?
@@ -25,8 +36,7 @@ export const NavBar = () => {
         <Navbar.Brand href="/">Home</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link href="/AddTodo">AddTodo</Nav.Link>
-          {/* <Nav.Link href="/ListTodo">ListTodo</Nav.Link> */}
-          {/* <Nav.Link href="/EditTodo">EditTodo</Nav.Link> */}
+    
           <Nav.Link href="/render">render</Nav.Link>
         </Nav>
       </Container>
@@ -34,6 +44,7 @@ export const NavBar = () => {
     </Navbar>
     :<div onClick={()=>{    navigate('/Login')
   }}></div>}
+  {/* {dataUser.username} */}
     </>
   )
 }

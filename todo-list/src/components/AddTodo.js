@@ -25,7 +25,7 @@ const newTodo={
 console.log("this.state.input",newTodo);
 
     this.setState({ input: "" });
-    axios.post("http://localhost:8080/create",newTodo)
+    axios.post("http://localhost:8080/addTodo",newTodo)
   };
 
   render() {

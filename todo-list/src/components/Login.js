@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useCookies } from 'react-cookie';
+
 function Login() {
   const [password,setPassword]=useState("");
   const [username, setUsername] = useState("");
+  const [cookies, setCookie] = useCookies(['user-info']);
 
 
-  const handelLogin=async (e)=>{
+  const handelLogin=async ()=>{
+    console.log(cookies);
 console.warn(username,password);
+
 let item={username,password};
 let ruselt= await fetch('http://localhost:8080/api/login',
 {
@@ -19,7 +24,9 @@ let ruselt= await fetch('http://localhost:8080/api/login',
 });
 ruselt= await ruselt.json();
 console.warn('result',ruselt);
-localStorage.setItem("user-info",JSON.stringify(ruselt));
+setCookie('user-info',ruselt);
+
+
 
 
 
