@@ -38,6 +38,7 @@ export const NavBar = () => {
           <Nav.Link href="/AddTodo">AddTodo</Nav.Link>
     
           <Nav.Link href="/render">render</Nav.Link>
+          <Nav.Link href="/register">register</Nav.Link>
         </Nav>
       </Container>
       <Button onClick={handelLogOut} variant="danger">log out</Button>

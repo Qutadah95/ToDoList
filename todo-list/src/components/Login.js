@@ -25,7 +25,7 @@ let ruselt= await fetch('http://localhost:8080/api/login',
 ruselt= await ruselt.json();
 console.warn('result',ruselt);
 setCookie('user-info',ruselt);
-
+localStorage.setItem('userName', username);
 
 
 
