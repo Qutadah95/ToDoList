@@ -24,23 +24,18 @@ function TodoRender() {
       setUserData(obj._id)
     })
     .catch(() => {
-      alert('Error retrieving data!!!');
+      console.log('Error retrieving data!!!');
     });
-    //   console.log("data",userData);
-    
-    // console.log("userData",userNameData);
+
       axios.get(`http://localhost:8080/list/?userID=${userData}`)
         .then((response) => {
           const data = response.data;
-          // const filterdData=dat
           setTodo(data)
-          // console.log("data",data);
         })
         .catch(() => {
-          alert('Error retrieving data!!!');
+          console.log('Error retrieving data!!!');
         });  });
  
-// console.log(todo);
   const deleteTodo = (id) => {
     console.log(id);
 
@@ -99,7 +94,7 @@ function TodoRender() {
             </ListGroup.Item> ;
 
             })
-            : "No todos, yay!"}
+            : "loading..."}
         </ListGroup>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header >

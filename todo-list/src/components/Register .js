@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useNavigate} from 'react-router-dom'
+
 function Register () {
     const [password,setPassword]=useState("");
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
+    const navigate=useNavigate();
+
     const handelregister =async ()=>{
       let item={username,password,email};
       let ruselt= await fetch('http://localhost:8080/register',
@@ -17,6 +21,8 @@ function Register () {
       });
       ruselt= await ruselt.json();
       console.log(ruselt);
+
+      navigate('/Login')
     }
   return (
     <Form>
