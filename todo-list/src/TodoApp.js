@@ -8,6 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import TodoRender from "./components/TodoRender";
 import Home from "./components/Home";
 import Register from "./components/Register ";
+import Login from "./components/Login";
 
 
 
@@ -35,6 +36,9 @@ export default function TodoApp() {
     </Routes>
     <Routes>
     <Route path='/render' element={<TodoRender />} />
+   </Routes>
+   <Routes>
+    <Route path='/Login' element={<Login />} />
    </Routes>
     </div>
 

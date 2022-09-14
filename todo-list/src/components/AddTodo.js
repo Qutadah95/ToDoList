@@ -34,7 +34,7 @@ const newTodo={
 
     return (
       <Form>
-      <Form.Group onChange={e => this.updateInput(e.target.value)} className="mb-3" value={this.state.input}>
+      <Form.Group  onChange={e => this.updateInput(e.target.value)} className="mb-3" value={this.state.input}>
         <Form.Label>Add Todo</Form.Label>
         <Form.Control type="text" placeholder="Add to do" />
       
