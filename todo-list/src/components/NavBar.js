@@ -38,13 +38,26 @@ export const NavBar = () => {
           <Nav.Link href="/AddTodo">AddTodo</Nav.Link>
     
           <Nav.Link href="/render">render</Nav.Link>
-          <Nav.Link href="/register">register</Nav.Link>
+          
         </Nav>
+        
       </Container>
       <Button onClick={handelLogOut} variant="danger">log out</Button>
     </Navbar>
-    :<div onClick={()=>{    navigate('/Login')
-  }}></div>}
+
+ 
+    :     <Navbar bg="dark" variant="dark">
+    <Container>
+      <Navbar.Brand href="/">Home</Navbar.Brand>
+      <Nav className="me-auto">
+        <Nav.Link href="/register">register</Nav.Link>
+  
+        <Nav.Link href="/Login">Login</Nav.Link>
+        
+      </Nav>
+      
+    </Container>
+  </Navbar>}
   {/* {dataUser.username} */}
     </>
   )
