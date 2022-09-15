@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import { Cookies } from 'react-cookie';
+import axios from 'axios';
 const cookies = new Cookies();
 
 // cookies.getAll()
@@ -18,11 +19,11 @@ console.log(dataUser)
 export const NavBar = () => {
   const navigate=useNavigate()
   const handelLogOut=  ()=>{
-
+axios.get('http://localhost:8080/api/logout')
     navigate('/')
     cookies.remove("user-info");
 
-    // window.localStorage.clear();
+    window.localStorage.clear();
     window.location.reload();
   }
 
@@ -38,12 +39,13 @@ export const NavBar = () => {
           <Nav.Link href="/AddTodo">AddTodo</Nav.Link>
     
           <Nav.Link href="/render">render</Nav.Link>
-          
+
         </Nav>
         
       </Container>
       <Button onClick={handelLogOut} variant="danger">log out</Button>
     </Navbar>
+
 
  
     :     <Navbar bg="dark" variant="dark">
@@ -58,7 +60,7 @@ export const NavBar = () => {
       
     </Container>
   </Navbar>}
-  {/* {dataUser.username} */}
+
     </>
   )
 }
