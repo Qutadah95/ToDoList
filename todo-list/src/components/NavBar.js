@@ -39,21 +39,28 @@ axios.get('http://localhost:8080/api/logout')
           <Nav.Link href="/AddTodo">AddTodo</Nav.Link>
     
           <Nav.Link href="/render">render</Nav.Link>
-        
+
         </Nav>
+        
       </Container>
       <Button onClick={handelLogOut} variant="danger">log out</Button>
     </Navbar>
-    :    <Navbar bg="dark" variant="dark">
+
+
+ 
+    :     <Navbar bg="dark" variant="dark">
     <Container>
       <Navbar.Brand href="/">Home</Navbar.Brand>
       <Nav className="me-auto">
-       
         <Nav.Link href="/register">register</Nav.Link>
+  
         <Nav.Link href="/Login">Login</Nav.Link>
+        
       </Nav>
+      
     </Container>
   </Navbar>}
+
     </>
   )
 }

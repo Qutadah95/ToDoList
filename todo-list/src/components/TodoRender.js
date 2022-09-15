@@ -66,6 +66,7 @@ function TodoRender() {
     });
   };
   const saveUpdatedTodo = () => {
+console.log(updatedTodo);
 
     axios
       .put(`/update/${updatedTodo.id}`, updatedTodo)
@@ -76,9 +77,28 @@ function TodoRender() {
     window.location.reload();
   };
 
+const handelUpdate=(id,st)=>{
+  // setUpdatedTodo({state:st})
+  
+    axios
+      .put(`/updateState/${id}/?state=${!st}`)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
 
+  console.log(updatedTodo,id,st);
+  
+  
+}
+// console.log(todo);
+const objectStyle = {
+  padding: "10px",
+  color: "Red"
+};
+const objectStyleValid = {
 
-
+  padding: "10px",
+  
+};
   return (
     <>
       <div>
@@ -86,11 +106,14 @@ function TodoRender() {
 
           {todo && todo.length
             ? todo.map((todoo, index) => {
-              return <ListGroup.Item key={index}>{todoo.todo} <Button style={{ width:'100px' }}  onClick={() => deleteTodo(todoo._id)} variant="danger">DELETE</Button>{' '}
+              return <ListGroup.Item style={todoo.state ? objectStyle : objectStyleValid} key={index}>{todoo.todo} <Button style={{ width:'100px' }}  onClick={() => deleteTodo(todoo._id)} variant="danger">DELETE</Button>{' '}
 
               <Button style={{ width:'100px' }} onClick={() =>
               updateTodo(todoo._id, todoo.todo)
             } variant="success">UPDATE</Button>{' '}
+             <Button style={{ width:'100px' }} onClick={() =>
+              handelUpdate(todoo._id, todoo.state)
+            } variant="success">complet</Button>{' '}
             </ListGroup.Item> ;
 
             })
