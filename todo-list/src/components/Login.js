@@ -7,13 +7,10 @@ import { useNavigate} from 'react-router-dom'
 function Login() {
   const [password,setPassword]=useState("");
   const [username, setUsername] = useState("");
-  const [cookies, setCookie] = useCookies(['user-info']);
+  const [ setCookie] = useCookies(['user-info']);
   const navigate=useNavigate();
-
-
   const handelLogin=async ()=>{
-    console.log(cookies);
-console.warn(username,password);
+    console.warn(username,password);
 try {
   let item={username,password};
 let ruselt= await fetch('http://localhost:8080/api/login',
@@ -25,19 +22,13 @@ let ruselt= await fetch('http://localhost:8080/api/login',
   body:JSON.stringify(item)
 });
 ruselt= await ruselt.json();
-console.warn('result',ruselt);
 setCookie('user-info',ruselt);
 localStorage.setItem('userName', username);
 window.location = '/';
-// navigate('/')
 
 } catch (error) {
   console.log(error);
 }
-
-
-
-
 
   };
 const handeRegister=()=>{
@@ -70,8 +61,6 @@ const handeRegister=()=>{
       
     </Form>
     </>
-
-   
   )
 }
 

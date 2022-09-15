@@ -14,37 +14,38 @@ function TodoRender() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const userNameS= localStorage.getItem("userName")
+  const userNameS = localStorage.getItem("userName")
+
+
   useEffect(() => {
     axios.get(`http://localhost:8080/user`)
-    .then((response) => {
-      const data = response.data;
-      // const filterdData=dat
-      let obj = data.find(o => o.username === `${userNameS}`);
-      setUserData(obj._id)
-    })
-    .catch(() => {
-      console.log('Error retrieving data!!!');
-    });
+      .then((response) => {
+        const data = response.data;
+        let obj = data.find(o => o.username === `${userNameS}`);
+        setUserData(obj._id)
+      })
+      .catch(() => {
+        console.log('Error retrieving data!!!');
+      });
+    axios.get(`http://localhost:8080/list/?userID=${userData}`)
+      .then((response) => {
+        const data = response.data;
+        setTodo(data)
+      })
+      .catch(() => {
+        console.log('Error retrieving data!!!');
+      });
+  });
 
-      axios.get(`http://localhost:8080/list/?userID=${userData}`)
-        .then((response) => {
-          const data = response.data;
-          setTodo(data)
-        })
-        .catch(() => {
-          console.log('Error retrieving data!!!');
-        });  });
- 
   const deleteTodo = (id) => {
-    console.log(id);
-
-    axios
-      .delete(`/delete/${id}`)
+    useEffect(() => {
+      axios
+        .delete(`/delete/${id}`)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
+      window.location.reload();
+    })
 
-    window.location.reload();
   };
   const updateTodo = (id, todo) => {
     setUpdatedTodo((prev) => {
@@ -66,39 +67,36 @@ function TodoRender() {
     });
   };
   const saveUpdatedTodo = () => {
-console.log(updatedTodo);
-
-    axios
-      .put(`/update/${updatedTodo.id}`, updatedTodo)
+    useEffect(() => {
+      axios
+        .put(`/update/${updatedTodo.id}`, updatedTodo)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
 
-    handleClose();
-    window.location.reload();
+      handleClose();
+      window.location.reload();
+    })
+
   };
 
-const handelUpdate=(id,st)=>{
-  // setUpdatedTodo({state:st})
-  
-    axios
-      .put(`/updateState/${id}/?state=${!st}`)
+  const handelUpdate = (id, st) => {
+    useEffect(() => {
+      axios
+        .put(`/updateState/${id}/?state=${!st}`)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
+    })
 
-  console.log(updatedTodo,id,st);
-  
-  
-}
-// console.log(todo);
-const objectStyle = {
-  padding: "10px",
-  color: "Red"
-};
-const objectStyleValid = {
+  }
+  const objectStyle = {
+    padding: "10px",
+    color: "Red"
+  };
+  const objectStyleValid = {
 
-  padding: "10px",
-  
-};
+    padding: "10px",
+
+  };
   return (
     <>
       <div>
@@ -106,15 +104,14 @@ const objectStyleValid = {
 
           {todo && todo.length
             ? todo.map((todoo, index) => {
-              return <ListGroup.Item style={todoo.state ? objectStyle : objectStyleValid} key={index}>{todoo.todo} <Button style={{ width:'100px' }}  onClick={() => deleteTodo(todoo._id)} variant="danger">DELETE</Button>{' '}
-
-              <Button style={{ width:'100px' }} onClick={() =>
-              updateTodo(todoo._id, todoo.todo)
-            } variant="success">UPDATE</Button>{' '}
-             <Button style={{ width:'100px' }} onClick={() =>
-              handelUpdate(todoo._id, todoo.state)
-            } variant="success">complet</Button>{' '}
-            </ListGroup.Item> ;
+              return <ListGroup.Item style={todoo.state ? objectStyle : objectStyleValid} key={index}>{todoo.todo} <Button style={{ width: '100px' }} onClick={() => deleteTodo(todoo._id)} variant="danger">DELETE</Button>{' '}
+                <Button style={{ width: '100px' }} onClick={() =>
+                  updateTodo(todoo._id, todoo.todo)
+                } variant="success">UPDATE</Button>{' '}
+                <Button style={{ width: '100px' }} onClick={() =>
+                  handelUpdate(todoo._id, todoo.state)
+                } variant="success">complet</Button>{' '}
+              </ListGroup.Item>;
 
             })
             : "loading..."}
@@ -130,7 +127,6 @@ const objectStyleValid = {
               value={updatedTodo.todo ? updatedTodo.todo : ""}
               onChange={handleChange}
             />
-
           </Modal.Body>
           <Modal.Footer>
             <Button className='btn' variant="secondary" onClick={handleClose}>
@@ -141,10 +137,7 @@ const objectStyleValid = {
             </Button>
           </Modal.Footer>
         </Modal>
-
       </div>
-
-
     </>
   )
 }

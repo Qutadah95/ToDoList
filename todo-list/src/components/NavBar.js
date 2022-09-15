@@ -9,13 +9,8 @@ import Button from 'react-bootstrap/Button';
 import { Cookies } from 'react-cookie';
 import axios from 'axios';
 const cookies = new Cookies();
-
-// cookies.getAll()
-// const dataUser=JSON.parse(window.localStorage.getItem('user-info'));
 const dataUser=cookies.get('user-info');
 
-console.log(cookies.get('user-info'),"TodoApp");
-console.log(dataUser)
 export const NavBar = () => {
   const navigate=useNavigate()
   const handelLogOut=  ()=>{

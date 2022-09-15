@@ -3,14 +3,9 @@ import Login from './Login'
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import { Cookies } from 'react-cookie';
-
-// const [cookies, setCookie] = useCookies();
-// const newCookies=new cookies()
-// console.log(newCookies);
 const cookies = new Cookies();
 const dataUser=cookies.get('user-info');
 
-// cookies.getAll()
 console.table(cookies.getAll(),"TodoApp");
 export const Home = () => {
 
